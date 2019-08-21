@@ -1,6 +1,6 @@
 pub struct Arguments {
     encode_or_decode: String,
-    key: i8,
+    key: usize,
     message: String,
 }
 
@@ -9,7 +9,7 @@ pub struct Alnum(usize, char);
 impl Arguments {
     pub fn new(args: &[String]) -> Arguments {
         let encode_or_decode = args[1].clone();
-        let key = args[2].clone().parse::<i8>().expect("Not a number");
+        let key = args[2].clone().parse::<usize>().expect("Not a number");
         let message = args[3].clone();
         Arguments {
             encode_or_decode,
@@ -25,6 +25,8 @@ impl Arguments {
     pub fn translate(&self) -> String {
         let mut encoded_message = String::new();
         let encryption_matrix: [Alnum; 27] = [
+            //If one wishes to use a non latin script, this should be the
+            //only place needing changed
             Alnum(0, 'a'),
             Alnum(1, 'b'),
             Alnum(2, 'c'),
@@ -55,14 +57,15 @@ impl Arguments {
         ];
         for i in self.message.chars() {
             let index = lookup(i, &encryption_matrix);
-            encoded_message.push(encryption_matrix[(index + (self.key as usize)) % 27].1);
+            encoded_message.push(encryption_matrix[(index + self.key) % 27].1);
         }
         encoded_message
     }
 }
 
 pub fn lookup(letter: char, encryption_matrix: &[Alnum; 27]) -> usize {
-    let mut letter_index: usize = 0;
+    //This takes a char and sticks it to an index value in the array defined prior
+    let mut letter_index: usize = 26;
     for _i in 0..encryption_matrix.len() {
         if letter == encryption_matrix[_i].1 {
             letter_index = encryption_matrix[_i].0;
