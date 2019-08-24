@@ -78,7 +78,7 @@ pub mod is_valid {
         let new_arg = arg
             .clone()
             .parse::<usize>()
-            .expect("Error, not a usize number!");
+            .expect("Error, not a positive number!");
         new_arg
     }
 

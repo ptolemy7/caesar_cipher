@@ -6,5 +6,9 @@ fn main() {
     let collection = cipher::Arguments::new(&args);
     //collection.print();
     let secret = collection.translate();
-    println!("The encoded message is '{}'", secret);
+    println!(
+        "The message is:
+'{}'",
+        secret
+    );
 }
