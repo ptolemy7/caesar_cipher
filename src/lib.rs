@@ -18,6 +18,8 @@ impl Arguments {
         }
     }
     pub fn print(&self) {
+        //Purely for debug purposes, just making sure that everything
+        //is collecting correctly
         println!("The setting is {:?}", self.encode_or_decode);
         println!("The key is {}", self.key);
         println!("The message is {}", self.message);
