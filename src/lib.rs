@@ -8,8 +8,8 @@ pub struct Alnum(usize, char);
 
 impl Arguments {
     pub fn new(args: &[String]) -> Arguments {
-        let encode_or_decode = args[1].clone();
-        let key = args[2].clone().parse::<usize>().expect("Not a number");
+        let encode_or_decode = is_valid::string_1(&args[1]).unwrap();
+        let key = is_valid::number(&args[2]);
         let message = args[3].clone();
         Arguments {
             encode_or_decode,
@@ -57,10 +57,31 @@ impl Arguments {
         ];
         for i in self.message.chars() {
             let index = lookup(i, &encryption_matrix);
-            encoded_message.push(encryption_matrix[(index + self.key) % 27].1);
+            encoded_message.push(encryption_matrix[(index + to_encode_or_decode(&self)) % 27].1);
         }
         encoded_message
     }
+}
+
+pub mod is_valid {
+    pub fn string_1(arg: &String) -> Result<String, &'static str> {
+        let return_arg = arg.clone();
+        //match the possible valid options, return false if invalid
+        match arg.as_str() {
+            "-e" => Ok(return_arg),
+            "-d" => Ok(return_arg),
+            "-h" => Ok(return_arg),
+            _ => Err("Invalid arguemnts passed, pass -h to view options"),
+        }
+    }
+    pub fn number(arg: &String) -> usize {
+        let new_arg = arg
+            .clone()
+            .parse::<usize>()
+            .expect("Error, not a usize number!");
+        new_arg
+    }
+
 }
 
 pub fn lookup(letter: char, encryption_matrix: &[Alnum; 27]) -> usize {
@@ -72,4 +93,13 @@ pub fn lookup(letter: char, encryption_matrix: &[Alnum; 27]) -> usize {
         }
     }
     return letter_index;
+}
+
+pub fn to_encode_or_decode(message: &Arguments) -> usize {
+    let actual_key = message.key % 27;
+    match message.encode_or_decode.as_str() {
+        "-e" => actual_key,
+        "-d" => 27 - actual_key,
+        _ => panic!("Error, invalid key"),
+    }
 }
