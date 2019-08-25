@@ -10,15 +10,15 @@
             "name": "caesar_cipher",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/ptolemy7/caesar_cipher.git"
+                    "type": "dir",
+                    "path": "/home/ptolemy/Projects/caesar_cipher"
                 }
-            ]
+            ],
             "buildsystem": "simple",
             "build-commands": [
-                "source /usr/lib/sdk/rust-stable/enable && cargo build--release"
+                "source /usr/lib/sdk/rust-stable/enable.sh && cargo build--release",
                 "install -D target/release/caesar-cipher app/bin/caesar_cipher"
-            ],
+            ]
         }
     ]
 }
