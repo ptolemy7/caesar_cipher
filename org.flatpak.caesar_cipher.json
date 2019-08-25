@@ -1,0 +1,24 @@
+{
+    "app-id": "org.flatpak.caesar_cipher",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "18.08",
+    "sdk": "org.freedesktop.Sdk",
+    "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
+    "command": "caesar_cipher",
+    "modules": [
+        {
+            "name": "caesar_cipher",
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "main.rs"
+                }
+            ]
+            "buildsystem": "simple",
+            "build-commands": [
+                "source /usr/lib/sdk/rust-stable/enable --release"
+            ],
+
+        }
+    ]
+}
