@@ -34,7 +34,7 @@ impl Arguments {
                     message,
                 })
             } else {
-                if args.len() < 3 {
+                if args.len() < 4 {
                     Err("Not enough arguments, use --help for more")
                 } else {
                     Err("Too many arguments, use --help for more")
