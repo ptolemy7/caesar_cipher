@@ -11,7 +11,7 @@
             "sources": [
                 {
                     "type": "git",
-                    "path": "https://"
+                    "url": "https://github.com/ptolemy7/caesar_cipher.git"
                 }
             ]
             "buildsystem": "simple",
@@ -19,7 +19,6 @@
                 "source /usr/lib/sdk/rust-stable/enable && cargo build--release"
                 "install -D target/release/caesar-cipher app/bin/caesar_cipher"
             ],
-
         }
     ]
 }
