@@ -1,5 +1,5 @@
 [package]
-name = "caesar_cipher"
+name = "caesar-cipher"
 version = "1.0.0"
 authors = ["Dalton Sconce <dscone@protonmail.com>"]
 edition = "2018"
