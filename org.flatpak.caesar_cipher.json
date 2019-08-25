@@ -10,13 +10,14 @@
             "name": "caesar_cipher",
             "sources": [
                 {
-                    "type": "dir",
-                    "path": "main.rs"
+                    "type": "git",
+                    "path": "https://"
                 }
             ]
             "buildsystem": "simple",
             "build-commands": [
-                "source /usr/lib/sdk/rust-stable/enable --release"
+                "source /usr/lib/sdk/rust-stable/enable && cargo build--release"
+                "install -D target/release/caesar-cipher app/bin/caesar_cipher"
             ],
 
         }
