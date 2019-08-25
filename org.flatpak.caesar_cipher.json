@@ -4,7 +4,7 @@
     "runtime-version": "18.08",
     "sdk": "org.freedesktop.Sdk",
     "sdk-extensions": ["org.freedesktop.Sdk.Extension.rust-stable"],
-    "command": "caesar_cipher",
+    "command": "caesar-cipher",
     "modules": [
         {
             "name": "caesar_cipher",
@@ -16,8 +16,8 @@
             ],
             "buildsystem": "simple",
             "build-commands": [
-                "source /usr/lib/sdk/rust-stable/enable.sh && cargo build--release",
-                "install -D target/release/caesar-cipher app/bin/caesar_cipher"
+                "export PATH=$PATH:/usr/lib/sdk/rust-stable/bin/ && cargo build --release",
+                "install -D target/release/caesar-cipher /app/bin/caesar-cipher"
             ]
         }
     ]
